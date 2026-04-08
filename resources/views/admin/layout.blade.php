@@ -198,6 +198,14 @@ Pengaduan
 
 </a>
 
+
+<a href="{{ route('admin.kategori.index') }}">
+
+Kategori
+
+</a>
+
+
 <a href="{{ route('admin.siswa')}}">
 
 Siswa
