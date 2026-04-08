@@ -60,10 +60,11 @@
                             <select class="form-control @error('kategori') is-invalid @enderror"
                                     id="kategori" name="kategori" required>
                                 <option value="">-- Pilih Kategori --</option>
-                                <option value="Fasilitas" {{ old('kategori') == 'Fasilitas' ? 'selected' : '' }}>Fasilitas</option>
-                                <option value="Kebersihan" {{ old('kategori') == 'Kebersihan' ? 'selected' : '' }}>Kebersihan</option>
-                                <option value="Keamanan" {{ old('kategori') == 'Keamanan' ? 'selected' : '' }}>Keamanan</option>
-                                <option value="Lainnya" {{ old('kategori') == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+                                @forelse ($kategoris as $kategori)
+                                    <option value="{{ $kategori->nama_kategori }}" {{ old('kategori') == $kategori->nama_kategori ? 'selected' : '' }}>{{ $kategori->nama_kategori }}</option>
+                                @empty
+                                    <option value="">Tidak ada kategori tersedia</option>
+                                @endforelse
                             </select>
                             @error('kategori')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -88,7 +89,7 @@
                             <label for="foto" class="form-label">Foto Lampiran</label>
                             <input type="file" class="form-control @error('foto') is-invalid @enderror"
                                    id="foto" name="foto" accept="image/*">
-                            <small class="text-muted">Format: JPG, PNG, GIF (Maksimal 2MB)</small>
+                            <small class="text-muted">Format: JPG, PNG, GIF (Maksimal 10MB)</small>
                             @error('foto')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
