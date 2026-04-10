@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('title', 'Data Siswa')
+@section('title', 'Kelola Kategori')
 
 @section('content')
 
@@ -9,9 +9,9 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Data Siswa</h5>
-                    <a href="{{ route('siswa.create') }}" class="btn btn-light btn-sm">
-                        <i class="fas fa-plus"></i> Tambah Siswa
+                    <h5 class="mb-0">Daftar Kategori</h5>
+                    <a href="{{ route('admin.kategori.create') }}" class="btn btn-light btn-sm">
+                        <i class="fas fa-plus"></i> Tambah Kategori
                     </a>
                 </div>
 
@@ -23,36 +23,27 @@
                         </div>
                     @endif
 
-                    @if (session('error'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            {{ session('error') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        </div>
-                    @endif
-
-                    @if($siswa->count() > 0)
+                    @if ($kategoris->count() > 0)
                         <table class="table table-striped table-hover">
                             <thead class="table-dark">
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama</th>
-                                    <th>NIS</th>
-                                    <th>Kelas</th>
+                                    <th>Nama Kategori</th>
+                                    <th>Dibuat</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($siswax as $no => $siswa)
+                                @foreach ($kategoris as $no => $kategori)
                                 <tr>
                                     <td>{{ $no + 1 }}</td>
-                                    <td>{{ $siswa->nama }}</td>
-                                    <td>{{ $siswa->nis }}</td>
-                                    <td>{{ $siswa->kelas }}</td>
+                                    <td><strong>{{ $kategori->nama_kategori }}</strong></td>
+                                    <td>{{ $kategori->created_at->format('d/m/Y H:i') }}</td>
                                     <td>
-                                        <a href="{{ route('siswa.edit', $siswa->id) }}" class="btn btn-warning btn-sm">
+                                        <a href="{{ route('admin.kategori.edit', $kategori->id) }}" class="btn btn-warning btn-sm">
                                             <i class="fas fa-edit"></i> Edit
                                         </a>
-                                        <form action="{{ route('siswa.destroy', $siswa->id) }}" method="POST" style="display:inline;">
+                                        <form action="{{ route('admin.kategori.destroy', $kategori->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">
@@ -66,7 +57,7 @@
                         </table>
                     @else
                         <div class="alert alert-info">
-                            Belum ada data siswa. <a href="{{ route('siswa.create') }}">Tambah siswa baru</a>
+                            Belum ada kategori. <a href="{{ route('admin.kategori.create') }}">Tambah kategori baru</a>
                         </div>
                     @endif
                 </div>

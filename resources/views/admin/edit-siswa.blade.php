@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('title', 'Tambah Siswa')
+@section('title', 'Edit Siswa')
 
 @section('content')
 
@@ -9,7 +9,7 @@
         <div class="col-md-6">
             <div class="card shadow">
                 <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0">Tambah Siswa Baru</h5>
+                    <h5 class="mb-0">Edit Data Siswa</h5>
                 </div>
 
                 <div class="card-body">
@@ -25,14 +25,15 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('siswa.store') }}" method="POST">
+                    <form action="{{ route('siswa.update', $siswa->id) }}" method="POST">
                         @csrf
+                        @method('PUT')
 
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama Lengkap</label>
                             <input type="text" class="form-control @error('nama') is-invalid @enderror"
                                    id="nama" name="nama" placeholder="Masukkan nama siswa"
-                                   value="{{ old('nama') }}" required>
+                                   value="{{ old('nama', $siswa->nama) }}" required>
                             @error('nama')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -42,7 +43,7 @@
                             <label for="nis" class="form-label">NIS (Nomor Induk Siswa)</label>
                             <input type="text" class="form-control @error('nis') is-invalid @enderror"
                                    id="nis" name="nis" placeholder="Masukkan NIS"
-                                   value="{{ old('nis') }}" required>
+                                   value="{{ old('nis', $siswa->nis) }}" required>
                             @error('nis')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -52,17 +53,16 @@
                             <label for="kelas" class="form-label">Kelas</label>
                             <input type="text" class="form-control @error('kelas') is-invalid @enderror"
                                    id="kelas" name="kelas" placeholder="Contoh: X-A, XI-B, XII-C"
-                                   value="{{ old('kelas') }}" required>
+                                   value="{{ old('kelas', $siswa->kelas) }}" required>
                             @error('kelas')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
+                            <label for="password" class="form-label">Password Baru (Kosongkan jika tidak ingin diubah)</label>
                             <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                   id="password" name="password" placeholder="Masukkan password"
-                                   required>
+                                   id="password" name="password" placeholder="Masukkan password baru">
                             @error('password')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -74,7 +74,7 @@
                                 <i class="fas fa-arrow-left"></i> Kembali
                             </a>
                             <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-save"></i> Simpan
+                                <i class="fas fa-save"></i> Perbarui
                             </button>
                         </div>
                     </form>

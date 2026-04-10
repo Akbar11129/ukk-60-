@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\KategoriController;
 
 /* ===================================================================
    PUBLIC ROUTES
@@ -58,6 +59,7 @@ Route::middleware(['App\Http\Middleware\AdminMiddleware'])->group(function () {
     Route::get('/admin/pengaduan', [PengaduanController::class, 'index'])->name('admin.pengaduan');
     Route::post('/admin/pengaduan/{id}/tanggapan', [PengaduanController::class, 'simpanTanggapan'])->name('admin.pengaduan.tanggapan');
     Route::get('/admin/siswa', [SiswaController::class, 'index'])->name('admin.siswa');
+    Route::resource('admin/kategori', KategoriController::class, ['names' => 'admin.kategori']);
 });
 
 /* ===================================================================
