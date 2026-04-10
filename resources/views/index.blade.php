@@ -284,10 +284,6 @@
     <nav class="navbar">
         <div class="navbar-content">
             <div class="logo-section">
-    <!-- Logo utama -->
-    <img src="{{ asset('storage/img/Logo.png') }}"
-         alt="Logo APSA School"
-         class="logo-img">
 
     <!-- Hapus placeholder karena sudah ada gambar -->
     <!-- <div class="logo-placeholder">APSA</div> -->

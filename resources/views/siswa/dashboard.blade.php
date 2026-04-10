@@ -1,6 +1,6 @@
 @extends('siswa.layout')
 
-@section('title', 'Dashboard Siswa')
+@section('title', '')
 
 @section('content')
 

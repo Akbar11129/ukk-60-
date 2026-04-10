@@ -63,6 +63,7 @@
                                 <option value="Fasilitas" {{ old('kategori') == 'Fasilitas' ? 'selected' : '' }}>Fasilitas</option>
                                 <option value="Kebersihan" {{ old('kategori') == 'Kebersihan' ? 'selected' : '' }}>Kebersihan</option>
                                 <option value="Keamanan" {{ old('kategori') == 'Keamanan' ? 'selected' : '' }}>Keamanan</option>
+                                <option value="Guru/Pengajar" {{ old('kategori') == 'Guru/Pengajar' ? 'selected' : '' }}>Guru/Pengajar</option>
                                 <option value="Lainnya" {{ old('kategori') == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
                             </select>
                             @error('kategori')
